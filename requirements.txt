@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]==0.24.0.post1
+pydantic
+scikit-learn
+pandas
+joblib
+numpy
+matplotlib
+seaborn
+pydantic-settings

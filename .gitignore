@@ -1,0 +1,13 @@
+Set-Content -Path .gitignore -Value @"
+# Ambiente Virtual
+.venv/
+venv/
+
+# Cache do Python
+__pycache__/
+*.pyc
+
+# Arquivos do editor/IDE
+.vscode/
+.idea/
+"@
