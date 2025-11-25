@@ -1,46 +1,4 @@
-# Dentro do arquivo train_model.py (ou em um script separado)
-import pandas as pd
-import numpy as np
-
-def gerar_dataset(num_alunos=500, file_path='data/alunos.csv'):
-    """Gera um dataset sintético para o problema de evasão."""
-    np.random.seed(42)
-    dados = {
-        'idade': np.random.randint(17, 35, size=num_alunos),
-        'sexo': np.random.choice(['M', 'F'], size=num_alunos),
-        'tipo_escola_medio': np.random.choice(['publica', 'privada'], size=num_alunos),
-        'nota_enem': np.random.uniform(450, 800, size=num_alunos),
-        'renda_familiar': np.random.uniform(1, 20, size=num_alunos), # em salários mínimos
-        'trabalha': np.random.choice([0, 1], size=num_alunos),
-        'horas_trabalho_semana': np.where(np.random.choice([0, 1], size=num_alunos) == 1, np.random.randint(10, 40), 0),
-        'reprovacoes_1_sem': np.random.choice([0, 1, 2, 3], size=num_alunos, p=[0.7, 0.15, 0.1, 0.05]),
-        'bolsista': np.random.choice([0, 1], size=num_alunos, p=[0.6, 0.4]),
-        'distancia_campus_km': np.random.uniform(1, 50, size=num_alunos)
-    }
-    
-    df = pd.DataFrame(dados)
-    
-    # Criando a variável alvo 'evasao_ate_1ano'
-    prob_evasao = (
-        -0.05 * df['nota_enem']/100 + 
-        0.1 * df['reprovacoes_1_sem'] + 
-        0.05 * df['horas_trabalho_semana']/10 +
-        0.01 * df['distancia_campus_km'] -
-        0.02 * df['renda_familiar'] -
-        (df['tipo_escola_medio'] == 'privada') * 0.1
-    )
-    prob_evasao = 1 / (1 + np.exp(-prob_evasao)) # Função sigmoide
-    df['evasao_ate_1ano'] = (prob_evasao > np.random.uniform(0.3, 0.7, size=num_alunos)).astype(int)
-
-    # Inserindo dados ausentes
-    for col in ['nota_enem', 'renda_familiar']:
-        df.loc[df.sample(frac=0.05).index, col] = np.nan
-        
-    df.to_csv(file_path, index=False)
-    print(f"Dataset sintético salvo em {file_path}")
-
-gerar_dataset() # Descomente para gerar o arquivo
-
+# TREINAMENTO E AVALIAÇÃO DO MODELO
 
 import pandas as pd
 import numpy as np
