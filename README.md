@@ -164,5 +164,9 @@ Executa predições para um lote de instâncias de alunos.
     ]
     ```
 
+## Notebook no Google Colab para teste
+
+[Colab](https://colab.research.google.com/drive/1NuSrL3MaFiV1oHyHe0geSucV495N-k2C?usp=sharing)
+
 ## Licença
 Este projeto é distribuído sob a licença MIT. Consulte o arquivo `LICENSE` para mais detalhes.
