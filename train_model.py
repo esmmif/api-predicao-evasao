@@ -103,11 +103,10 @@ def train_and_evaluate():
     print(f"Modelo salvo em: {model_path}")
 
 if __name__ == "__main__":
-    # Opcional: Gerar dataset se não existir
+
     if not os.path.exists('data/alunos.csv'):
         os.makedirs('data', exist_ok=True)
-        # Coloque a função gerar_dataset aqui ou importe-a
-        # gerar_dataset() 
+
         print("Por favor, crie o arquivo data/alunos.csv ou use a função para gerá-lo.")
     else:
         train_and_evaluate()
